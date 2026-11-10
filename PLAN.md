@@ -35,6 +35,23 @@ Corigine IN-endpoint driver in `libs/bao1x-hal/src/usb/`). Worth an upstream iss
 BaoScope v2 works around it: all device→host data is sent as 512-byte records with seq + CRC32;
 the host drops repeats and counts losses. `tools/capture.py --stream N` measures the true rate.
 
+## BaoScope v10 — real-peripheral tests, in-place finding, demo (2026-11-10)
+
+- `decode.py uart|i2c --real`: the chip's own UART2 TX (numbered log lines, 1 Mbaud) and I²C0
+  controller (address scan 0x08–0x77, all NACK with nothing attached) drive the decoders through
+  jumpers: header 15 (PB14) → 9 (PC7), 27 (PB11) → 14 (PC0), 26 (PB12) → 12 (PC1). Before any
+  external decode a core forces all BaoScope pins to inputs (`inputs_code`). **Not yet run — needs
+  the 3 jumper wires.** With no wire, real mode decodes 0 bytes (clean negative control).
+- **In-place sniffing does not work (hardware finding):** decoding PB14/PB11/PB12 directly, without
+  remapping them away from UART2/I²C0, reads the pads as constant 0 (UART: one 0x00 + framing error
+  then silence; I²C: zero line changes) while the peripherals were demonstrably active. BIO only
+  sees pads mapped to it. `--inplace` is kept for reproducibility.
+- `tools/demo.py`: 7 wire-free tests → **7/7 PASS** (`captures/demo-scorecard.md`); `--wired` runs
+  the real-peripheral tests instead (self-tests skipped so nothing drives wired pins).
+- Throughput note: dedup'd USB rate is now 2.48 MB/s (was 4.32) — the streaming reply path
+  builds records byte by byte; fine for captures (~50 ms per 131k samples), easy to optimise.
+- Submission write-up: `SUBMISSION.md`; upstream drafts: `docs/upstream-issues.md`.
+
 ## BaoScope v8 — on-chip SPI decode (2026-11-10) ✅
 
 `decode.py spi [--sck HZ] [--sample HZ] [--base 16] [--n N] [--selftest]` → firmware
@@ -266,6 +283,7 @@ Board runs **baoscope v8** (`apps-dabao/baoscope`).
 Capture: `tools/capture.py --dma --split --mode {1,2,8} --rate HZ --n N --vcd out.vcd`.
 Decode: `tools/decode.py {uart --baud B | i2c --bus HZ | spi --sck HZ} --selftest`.
 Weeks 1–3 goals met: capture ≤ 17.5 MS/s (8 ch) / 25 MS/s (4 ch); on-chip UART ≤ 2 Mbaud,
-I²C ≤ 2 MHz, SPI ≤ 2 MHz. Next: tests against real external devices (USB-serial adapter,
-an I²C sensor, an SPI flash), then the sigrok/PulseView host side (week 4).
-Also: file the USB duplication bug upstream.
+I²C ≤ 2 MHz, SPI ≤ 2 MHz; `tools/demo.py` 7/7 PASS. Submission: `SUBMISSION.md`.
+Remaining before Dec 15: buy jumper wires and run `demo.py --wired`; publish both repos;
+record a demo video; file the drafts in `docs/upstream-issues.md`. Optional: faster reply path,
+UART/SPI raw-edge decoders for >2 MHz, narrow DMA window, sigrok driver.

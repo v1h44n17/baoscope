@@ -11,7 +11,10 @@ BIO cores. Entry for the Dabao Hackathon (BIO + Tooling directions).
 - **Self-testing:** a spare BIO core generates a known signal on the same pins, so every mode is
   checked end to end without wiring.
 
+**Judges: start with [SUBMISSION.md](SUBMISSION.md)**, then run `python tools/demo.py` (7 wire-free
+tests, last run 7/7 PASS — [scorecard](captures/demo-scorecard.md)).
 Full design notes, measurements and lessons learned: [PLAN.md](PLAN.md).
+Upstream bug drafts: [docs/upstream-issues.md](docs/upstream-issues.md).
 
 ## Layout
 
@@ -19,7 +22,8 @@ Full design notes, measurements and lessons learned: [PLAN.md](PLAN.md).
 |---|---|
 | `xous-core/` (separate repo, branch `baoscope`) | Firmware: `apps-dabao/baoscope/src/main.rs` |
 | `tools/capture.py` | Host: request captures, self-test, export `.vcd` (PulseView / GTKWave) |
-| `tools/decode.py` | Host: on-chip UART, I²C and SPI decode, self-tests |
+| `tools/demo.py` | One-command demo: every test, markdown scorecard (`--wired` for real peripherals) |
+| `tools/decode.py` | Host: on-chip UART, I²C and SPI decode, self-tests, `--real` peripheral tests |
 | `tools/usb_meter.py`, `tools/console.py` | USB throughput meter, bootloader/console helper |
 | `captures/` | Measurement logs from every sweep, plus a few representative waveforms |
 

@@ -198,6 +198,8 @@ def main():
     u.add_argument("--real", action="store_true",
                    help="decode the chip's real UART2 TX (log output, 1 Mbaud). Jumper header "
                         "pin 15 (PB14) -> pin 9 (PC7); uses --pin 23 and --baud 1000000")
+    u.add_argument("--inplace", action="store_true",
+                   help="with --real: no wire - BIO reads PB14 directly while UART2 keeps driving it")
     i = sub.add_parser("i2c")
     i.add_argument("--bus", type=int, default=100_000, help="self-test source bus rate (Hz)")
     i.add_argument("--sample", type=int, default=10_000_000, help="decoder poll rate (Hz)")
@@ -208,6 +210,8 @@ def main():
     i.add_argument("--real", action="store_true",
                    help="decode the chip's real I2C0 controller scanning 0x08-0x77. Jumper header "
                         "pin 27 (PB11 SCL) -> pin 14 (PC0), pin 26 (PB12 SDA) -> pin 12 (PC1)")
+    i.add_argument("--inplace", action="store_true",
+                   help="with --real: no wires - BIO reads PB11/PB12 directly while I2C0 drives them")
     s = sub.add_parser("spi", help="mode 0; pins base..base+3 = SCK, MOSI, MISO, CS")
     s.add_argument("--sck", type=int, default=1_000_000, help="self-test source SCK rate (Hz)")
     s.add_argument("--sample", type=int, default=10_000_000, help="decoder poll rate (Hz)")
@@ -226,13 +230,17 @@ def main():
         real = getattr(a, "real", False)
         if real and a.selftest:
             sys.exit("--real and --selftest are exclusive (self-tests drive the pins)")
+        if getattr(a, "inplace", False) and not real:
+            sys.exit("--inplace requires --real")
         if a.proto == "i2c":
+            if real and a.inplace:
+                a.scl = 11  # PB11 SCL, PB12 SDA, read in place
             info, events = i2c(link, a.sample, a.bus, a.scl, a.n, a.timeout, 2 if real else a.selftest)
         elif a.proto == "spi":
             info, events = spi(link, a.sample, a.sck, a.base, a.n, a.timeout, a.selftest)
         else:
             if real:
-                a.pin, a.baud = 23, 1_000_000
+                a.pin, a.baud = (14 if a.inplace else 23), 1_000_000
             info, data = uart(link, a.baud, a.pin, a.n, a.timeout, 2 if real else a.selftest)
 
     if a.proto == "spi":
