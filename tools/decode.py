@@ -55,6 +55,60 @@ def i2c(link, sample_hz, bus_hz, scl, n, timeout_ms, selftest):
                 finished=bool(finished)), events
 
 
+SPI_ASSERT, SPI_RELEASE, SPI_BYTE = 1, 2, 3
+
+
+def spi(link, sample_hz, sck_hz, base, n, timeout_ms, selftest):
+    link.ser.write(f"spi {sample_hz} {sck_hz} {base} {n} {timeout_ms} {int(selftest)}\n".encode())
+    kind, body = link.message(timeout=timeout_ms / 1000 + 10)
+    if kind == b"ERR_":
+        raise RuntimeError(body.decode(errors="replace"))
+    if kind != b"SPI1":
+        raise RuntimeError(f"unexpected message {kind!r}")
+    ver, rate, count, elapsed, finished = HDR.unpack_from(body)
+    words = struct.unpack_from(f"<{count}I", body, HDR.size)
+    events = [(w >> 16, w & 0xFF, (w >> 8) & 0xFF) for w in words]  # (tag, mosi, miso/leftover)
+    return dict(version=ver, sample_hz=rate, events=count, elapsed_ms=elapsed,
+                finished=bool(finished)), events
+
+
+def spi_frames(events):
+    """Group events into CS-assert..release frames of (mosi, miso) bytes; note partial bytes."""
+    frames, cur = [], None
+    for tag, mosi, miso in events:
+        if tag == SPI_ASSERT:
+            cur = {"bytes": [], "leftover_bits": 0}
+        elif tag == SPI_RELEASE and cur is not None:
+            cur["leftover_bits"] = mosi  # release event carries the partial bit count in low bits
+            frames.append(cur)
+            cur = None
+        elif tag == SPI_BYTE and cur is not None:
+            cur["bytes"].append((mosi, miso))
+    return frames
+
+
+def fmt_frame(f):
+    s = " ".join(f"{a:02x}/{b:02x}" for a, b in f["bytes"])
+    return f"[{s}]" + (f" +{f['leftover_bits']} bits" if f["leftover_bits"] else "")
+
+
+def check_spi(frames):
+    """Self-test: each frame is 9F/FF, k/~k, A5/k with k counting up (first frame may be cut)."""
+    bad, prev_k = [], None
+    for i, f in enumerate(frames):
+        b = f["bytes"]
+        ok = (len(b) == 3 and not f["leftover_bits"] and b[0] == (0x9F, 0xFF)
+              and b[1][1] == (~b[1][0]) & 0xFF and b[2] == (0xA5, b[1][0]))
+        if ok and prev_k is not None and b[1][0] != (prev_k + 1) & 0xFF:
+            ok = False
+        if not ok:
+            bad.append(i)
+        prev_k = b[1][0] if len(b) > 1 else None
+    real_bad = [i for i in bad if i != 0]
+    return dict(ok=len(frames) > 1 and not real_bad, frames=len(frames),
+                bad=len(real_bad), first_bad=real_bad[:5])
+
+
 def i2c_transactions(events):
     """Group events into START..STOP transactions of (data, nack) bytes."""
     txns, cur = [], None
@@ -119,6 +173,13 @@ def main():
     i.add_argument("--n", type=int, default=1024, help="events to decode before stopping")
     i.add_argument("--timeout", type=int, default=2000)
     i.add_argument("--selftest", action="store_true")
+    s = sub.add_parser("spi", help="mode 0; pins base..base+3 = SCK, MOSI, MISO, CS")
+    s.add_argument("--sck", type=int, default=1_000_000, help="self-test source SCK rate (Hz)")
+    s.add_argument("--sample", type=int, default=10_000_000, help="decoder poll rate (Hz)")
+    s.add_argument("--base", type=int, default=16, help="SCK BIO bit (default 16 = PC0..PC3)")
+    s.add_argument("--n", type=int, default=1025, help="events to decode before stopping")
+    s.add_argument("--timeout", type=int, default=2000)
+    s.add_argument("--selftest", action="store_true")
     ap.add_argument("--port")
     a = ap.parse_args()
 
@@ -129,9 +190,22 @@ def main():
         link.message(timeout=3)
         if a.proto == "i2c":
             info, events = i2c(link, a.sample, a.bus, a.scl, a.n, a.timeout, a.selftest)
+        elif a.proto == "spi":
+            info, events = spi(link, a.sample, a.sck, a.base, a.n, a.timeout, a.selftest)
         else:
             info, data = uart(link, a.baud, a.pin, a.n, a.timeout, a.selftest)
 
+    if a.proto == "spi":
+        frames = spi_frames(events)
+        print("spi:", info)
+        for f in frames[:4]:
+            print("  ", fmt_frame(f))
+        if a.selftest:
+            v = check_spi(frames)
+            print("self-test:", v)
+            print("SELF-TEST", "PASS" if v["ok"] else "FAIL")
+            sys.exit(0 if v["ok"] else 1)
+        return
     if a.proto == "i2c":
         txns = i2c_transactions(events)
         print("i2c:", info)

@@ -1,0 +1,70 @@
+== spi sck 250000 sample 10000000
+spi: {'version': 8, 'sample_hz': 10000000, 'events': 4096, 'elapsed_ms': 96, 'finished': True}
+   [9f/ff 00/ff a5/00]
+   [9f/ff 01/fe a5/01]
+   [9f/ff 02/fd a5/02]
+   [9f/ff 03/fc a5/03]
+self-test: {'ok': True, 'frames': 819, 'bad': 0, 'first_bad': []}
+SELF-TEST PASS
+== spi sck 250000 sample 20000000
+spi: {'version': 8, 'sample_hz': 20000000, 'events': 4096, 'elapsed_ms': 91, 'finished': True}
+   [9f/ff 00/ff a5/00]
+   [9f/ff 01/fe a5/01]
+   [9f/ff 02/fd a5/02]
+   [9f/ff 03/fc a5/03]
+self-test: {'ok': True, 'frames': 819, 'bad': 0, 'first_bad': []}
+SELF-TEST PASS
+== spi sck 1000000 sample 10000000
+spi: {'version': 8, 'sample_hz': 10000000, 'events': 4096, 'elapsed_ms': 25, 'finished': True}
+   [9f/ff 00/ff a5/00]
+   [9f/ff 01/fe a5/01]
+   [9f/ff 02/fd a5/02]
+   [9f/ff 03/fc a5/03]
+self-test: {'ok': True, 'frames': 819, 'bad': 0, 'first_bad': []}
+SELF-TEST PASS
+== spi sck 1000000 sample 20000000
+spi: {'version': 8, 'sample_hz': 20000000, 'events': 4096, 'elapsed_ms': 25, 'finished': True}
+   [9f/ff 00/ff a5/00]
+   [9f/ff 01/fe a5/01]
+   [9f/ff 02/fd a5/02]
+   [9f/ff 03/fc a5/03]
+self-test: {'ok': True, 'frames': 819, 'bad': 0, 'first_bad': []}
+SELF-TEST PASS
+== spi sck 2000000 sample 10000000
+spi: {'version': 8, 'sample_hz': 10000000, 'events': 4096, 'elapsed_ms': 14, 'finished': True}
+   [9f/ff 00/ff a5/00]
+   [9f/ff 01/fe a5/01]
+   [9f/ff 02/fd a5/02]
+   [9f/ff 03/fc a5/03]
+self-test: {'ok': True, 'frames': 819, 'bad': 0, 'first_bad': []}
+SELF-TEST PASS
+== spi sck 2000000 sample 20000000
+spi: {'version': 8, 'sample_hz': 20000000, 'events': 4096, 'elapsed_ms': 14, 'finished': True}
+   [9f/ff 00/ff a5/00]
+   [9f/ff 01/fe a5/01]
+   [9f/ff 02/fd a5/02]
+   [9f/ff 03/fc a5/03]
+self-test: {'ok': True, 'frames': 819, 'bad': 0, 'first_bad': []}
+SELF-TEST PASS
+== spi sck 3500000 sample 10000000
+spi: {'version': 8, 'sample_hz': 10000000, 'events': 4096, 'elapsed_ms': 11, 'finished': True}
+   [bc/ff 0a/f0] +2 bits
+   [fc/ff 0a/f0] +3 bits
+   [bc/ff 14/e8] +2 bits
+   [9e/ff 1e/e0] +4 bits
+self-test: {'ok': False, 'frames': 1024, 'bad': 1023, 'first_bad': [1, 2, 3, 4, 5]}
+SELF-TEST FAIL
+== spi sck 3500000 sample 20000000
+spi: {'version': 8, 'sample_hz': 20000000, 'events': 4096, 'elapsed_ms': 11, 'finished': True}
+   [9c/ff 0c/f0] +2 bits
+   [9e/ff 05/f8] +4 bits
+   [9e/ff 0a/f4] +3 bits
+   [9e/ff 1e/e0] +4 bits
+self-test: {'ok': False, 'frames': 1024, 'bad': 1023, 'first_bad': [1, 2, 3, 4, 5]}
+SELF-TEST FAIL
+== regression: i2c 400k
+SELF-TEST PASS
+== regression: uart 1M
+SELF-TEST PASS
+== regression: split capture
+SELF-TEST PASS
