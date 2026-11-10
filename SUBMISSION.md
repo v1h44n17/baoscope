@@ -8,6 +8,11 @@ PicoRV32 BIO cores as a sampling and decoding pipeline, with the main CPU asleep
 with a built-in self-test that uses a spare BIO core as the signal source, so the whole thing is
 verifiable on a bare board with **no wiring**: `python tools/demo.py` → **7/7 PASS**.
 
+- **Repo:** https://github.com/v1h44n17/baoscope
+- **Firmware:** https://github.com/v1h44n17/xous-core/tree/baoscope (`apps-dabao/baoscope`)
+- **Video (62 s):** https://github.com/v1h44n17/baoscope/blob/main/media/baoscope-demo.mp4 — rendered
+  from the board's real capture data (waveform, decoded bytes, scorecard), not mock-ups.
+
 ## What it does
 
 | Capability | Result (measured on hardware) |

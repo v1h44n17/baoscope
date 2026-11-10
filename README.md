@@ -11,6 +11,9 @@ BIO cores. Entry for the Dabao Hackathon (BIO + Tooling directions).
 - **Self-testing:** a spare BIO core generates a known signal on the same pins, so every mode is
   checked end to end without wiring.
 
+**Demo video (62 s): [media/baoscope-demo.mp4](media/baoscope-demo.mp4)** — rendered by
+`tools/make_video.py` from the board's own capture logs.
+
 **Judges: start with [SUBMISSION.md](SUBMISSION.md)**, then run `python tools/demo.py` (7 wire-free
 tests, last run 7/7 PASS — [scorecard](captures/demo-scorecard.md)).
 Full design notes, measurements and lessons learned: [PLAN.md](PLAN.md).
@@ -23,6 +26,7 @@ Upstream bug drafts: [docs/upstream-issues.md](docs/upstream-issues.md).
 | `xous-core/` ([fork, branch `baoscope`](https://github.com/v1h44n17/xous-core/tree/baoscope)) | Firmware: [`apps-dabao/baoscope/src/main.rs`](https://github.com/v1h44n17/xous-core/blob/baoscope/apps-dabao/baoscope/src/main.rs) |
 | `tools/capture.py` | Host: request captures, self-test, export `.vcd` (PulseView / GTKWave) |
 | `tools/demo.py` | One-command demo: every test, markdown scorecard (`--wired` for real peripherals) |
+| `tools/make_video.py` | Renders `media/baoscope-demo.mp4` from `captures/` (needs `matplotlib imageio-ffmpeg`) |
 | `tools/decode.py` | Host: on-chip UART, I²C and SPI decode, self-tests, `--real` peripheral tests |
 | `tools/usb_meter.py`, `tools/console.py` | USB throughput meter, bootloader/console helper |
 | `captures/` | Measurement logs from every sweep, plus a few representative waveforms |
