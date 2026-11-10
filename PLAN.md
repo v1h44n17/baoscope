@@ -35,6 +35,29 @@ Corigine IN-endpoint driver in `libs/bao1x-hal/src/usb/`). Worth an upstream iss
 BaoScope v2 works around it: all device→host data is sent as 512-byte records with seq + CRC32;
 the host drops repeats and counts losses. `tools/capture.py --stream N` measures the true rate.
 
+## BaoScope v7 — on-chip I²C decode (2026-11-10) ✅
+
+`decode.py i2c [--bus HZ] [--sample HZ] [--scl 16] [--n N] [--selftest]` → firmware
+`i2c <sample_hz> <bus_hz> <scl_bit> <n> <timeout> <selftest>` (SDA = SCL bit + 1; default PC0/PC1).
+Core 0 = I²C RX state machine: polls the 2-bit line state every quantum and acts only on change —
+SCL↑ shifts in SDA (9 bits → BYTE + ACK/NACK), SDA↓ with SCL high → START (incl. repeated START),
+SDA↑ with SCL high → STOP. Events `tag<<16 | ack<<8 | data` go through the same writer core to RAM.
+Core 2 = I²C master test source (push-pull, same pins) repeating `S A0+ k+ ~k- P`.
+UART and I²C now share one runner (`decode_run`), ready for SPI.
+
+| Bus rate | Decoder poll | 4,096-event self-test |
+|---|---|---|
+| 100 kHz (Standard-mode) | 10 MHz | **PASS** — 819/819 transactions exact |
+| 400 kHz (Fast-mode) | 10 MHz | **PASS** |
+| 1 MHz (Fast-mode Plus) | 10 MHz | **PASS** |
+| 2 MHz (beyond Fm+) | 10 MHz | **PASS** |
+| 1 MHz | 20 MHz | **PASS** |
+
+Regression: UART 1 Mbaud and split capture (mode 2 @ 17.5 MS/s) still pass.
+Caveat: self-test source is push-pull on the decoder's own pins; a real bus (open-drain, pull-ups,
+slow rise times, clock stretching) still needs testing against an external device.
+Raw: `captures/i2c-sweep.txt`.
+
 ## BaoScope v6 — on-chip UART decode (2026-11-10) ✅
 
 `decode.py uart --baud B [--pin 16] [--n N] [--selftest]` → firmware `uart <baud> <pin> <n> <timeout> <selftest>`.
@@ -216,9 +239,9 @@ Raw outputs: `captures/selftest-1MSps.{txt,vcd}`, `captures/rate-sweep.txt`, `ca
 
 ## Next action
 
-Board runs **baoscope v6** (`apps-dabao/baoscope`).
+Board runs **baoscope v7** (`apps-dabao/baoscope`).
 Capture: `tools/capture.py --dma --split --mode {1,2,8} --rate HZ --n N --vcd out.vcd`.
-Decode: `tools/decode.py uart --baud B --selftest`.
-Week 1–2 capture goals met; UART decode done (≤ 2 Mbaud). Next: I²C and SPI decoders, a test against
-a real external device, then the sigrok/PulseView host side. Also: put the project under git,
-and file the USB duplication bug upstream.
+Decode: `tools/decode.py uart --baud B --selftest`, `tools/decode.py i2c --bus HZ --selftest`.
+Week 1–2 capture goals met; UART (≤ 2 Mbaud) and I²C (≤ 2 MHz) decode done.
+Next: SPI decoder, tests against real external devices (USB-serial adapter, an I²C sensor),
+then the sigrok/PulseView host side. Also: file the USB duplication bug upstream.

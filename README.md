@@ -6,6 +6,7 @@ BIO cores. Entry for the Dabao Hackathon (BIO + Tooling directions).
 - **Capture:** 8 channels clean at 17.5 MS/s, 4 channels at 25 MS/s, up to 131,072 samples per run.
   BIO cores sample, pack and DMA straight to RAM; the CPU is not in the sample loop.
 - **On-chip UART decode:** 8N1, verified from 115,200 baud to 2 Mbaud.
+- **On-chip I²C decode:** START/STOP/repeated START, bytes with ACK/NACK, verified 100 kHz – 2 MHz.
 - **Self-testing:** a spare BIO core generates a known signal on the same pins, so every mode is
   checked end to end without wiring.
 
@@ -17,7 +18,7 @@ Full design notes, measurements and lessons learned: [PLAN.md](PLAN.md).
 |---|---|
 | `xous-core/` (separate repo, branch `baoscope`) | Firmware: `apps-dabao/baoscope/src/main.rs` |
 | `tools/capture.py` | Host: request captures, self-test, export `.vcd` (PulseView / GTKWave) |
-| `tools/decode.py` | Host: on-chip UART decode, self-test |
+| `tools/decode.py` | Host: on-chip UART and I²C decode, self-tests |
 | `tools/usb_meter.py`, `tools/console.py` | USB throughput meter, bootloader/console helper |
 | `captures/` | Measurement logs from every sweep, plus a few representative waveforms |
 

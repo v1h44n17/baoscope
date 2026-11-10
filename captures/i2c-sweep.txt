@@ -1,0 +1,40 @@
+== i2c bus 100000 sample 10MHz
+i2c: {'version': 7, 'sample_hz': 10000000, 'events': 4096, 'elapsed_ms': 261, 'finished': True}
+   S a0+ 00+ ff- P
+   S a0+ 01+ fe- P
+   S a0+ 02+ fd- P
+   S a0+ 03+ fc- P
+self-test: {'ok': True, 'transactions': 819, 'bad': 0, 'first_bad': []}
+SELF-TEST PASS
+== i2c bus 400000 sample 10MHz
+i2c: {'version': 7, 'sample_hz': 10000000, 'events': 4096, 'elapsed_ms': 67, 'finished': True}
+   S a0+ 00+ ff- P
+   S a0+ 01+ fe- P
+   S a0+ 02+ fd- P
+   S a0+ 03+ fc- P
+self-test: {'ok': True, 'transactions': 819, 'bad': 0, 'first_bad': []}
+SELF-TEST PASS
+== i2c bus 1000000 sample 10MHz
+i2c: {'version': 7, 'sample_hz': 10000000, 'events': 4096, 'elapsed_ms': 29, 'finished': True}
+   S a0+ 00+ ff- P
+   S a0+ 01+ fe- P
+   S a0+ 02+ fd- P
+   S a0+ 03+ fc- P
+self-test: {'ok': True, 'transactions': 819, 'bad': 0, 'first_bad': []}
+SELF-TEST PASS
+== i2c bus 2000000 sample 10MHz
+i2c: {'version': 7, 'sample_hz': 10000000, 'events': 4096, 'elapsed_ms': 16, 'finished': True}
+   S a0+ 00+ ff- P
+   S a0+ 01+ fe- P
+   S a0+ 02+ fd- P
+   S a0+ 03+ fc- P
+self-test: {'ok': True, 'transactions': 819, 'bad': 0, 'first_bad': []}
+SELF-TEST PASS
+== i2c bus 1000000 sample 20MHz
+i2c: {'version': 7, 'sample_hz': 20000000, 'events': 4096, 'elapsed_ms': 28, 'finished': True}
+self-test: {'ok': True, 'transactions': 819, 'bad': 0, 'first_bad': []}
+SELF-TEST PASS
+== regression: uart 1M
+SELF-TEST PASS
+== regression: split capture
+SELF-TEST PASS
