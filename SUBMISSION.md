@@ -78,8 +78,13 @@ all intermediate results is in [`PLAN.md`](PLAN.md).
 
 ## Run it
 
+Code: **https://github.com/v1h44n17/baoscope** (host tools, docs, results) and firmware on
+**https://github.com/v1h44n17/xous-core/tree/baoscope** (`apps-dabao/baoscope`).
+
 ```bash
-cd xous-core && git checkout baoscope && cargo xtask dabao baoscope
+git clone https://github.com/v1h44n17/baoscope.git && cd baoscope
+git clone -b baoscope https://github.com/v1h44n17/xous-core.git
+cd xous-core && cargo xtask dabao baoscope && cd ..
 # hold PROG, tap RESET, release → copy loader.uf2 xous.uf2 apps.uf2 to BAOCHIP with `cp -X`
 python tools/console.py --port /dev/cu.usbmodem…1 boot
 python tools/demo.py                       # 7 wire-free tests, prints the scorecard

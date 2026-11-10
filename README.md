@@ -20,7 +20,7 @@ Upstream bug drafts: [docs/upstream-issues.md](docs/upstream-issues.md).
 
 | Path | What |
 |---|---|
-| `xous-core/` (separate repo, branch `baoscope`) | Firmware: `apps-dabao/baoscope/src/main.rs` |
+| `xous-core/` ([fork, branch `baoscope`](https://github.com/v1h44n17/xous-core/tree/baoscope)) | Firmware: [`apps-dabao/baoscope/src/main.rs`](https://github.com/v1h44n17/xous-core/blob/baoscope/apps-dabao/baoscope/src/main.rs) |
 | `tools/capture.py` | Host: request captures, self-test, export `.vcd` (PulseView / GTKWave) |
 | `tools/demo.py` | One-command demo: every test, markdown scorecard (`--wired` for real peripherals) |
 | `tools/decode.py` | Host: on-chip UART, I²C and SPI decode, self-tests, `--real` peripheral tests |
@@ -30,8 +30,9 @@ Upstream bug drafts: [docs/upstream-issues.md](docs/upstream-issues.md).
 ## Reproduce
 
 ```bash
-git clone https://github.com/betrusted-io/xous-core.git   # then check out the baoscope branch
-cd xous-core && cargo xtask dabao baoscope
+git clone https://github.com/v1h44n17/baoscope.git && cd baoscope
+git clone -b baoscope https://github.com/v1h44n17/xous-core.git
+cd xous-core && cargo xtask dabao baoscope && cd ..
 ```
 
 Flash: hold **PROG**, tap **RESET**, release PROG → copy `loader.uf2`, `xous.uf2`, `apps.uf2` from
