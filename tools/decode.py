@@ -24,6 +24,7 @@ HDR = struct.Struct("<5I")  # version, baud, count, elapsed_ms, finished
 
 
 def uart(link, baud, pin, n, timeout_ms, selftest):
+    # selftest: False/0 = external, True/1 = BIO source, 2 = real UART2 log traffic
     link.ser.write(f"uart {baud} {pin} {n} {timeout_ms} {int(selftest)}\n".encode())
     kind, body = link.message(timeout=timeout_ms / 1000 + 10)
     if kind == b"ERR_":
@@ -146,6 +147,34 @@ def check_i2c(txns):
                 bad=len(real_bad), first_bad=real_bad[:5])
 
 
+def check_real_uart(data):
+    """Real UART2 log traffic: lines 'BSCP-REAL NNNNNN' must be numbered consecutively."""
+    import re
+    nums = [int(m) for m in re.findall(rb"BSCP-REAL (\d{6})", data)]
+    gaps = [(a, b) for a, b in zip(nums, nums[1:]) if b != a + 1]
+    return dict(ok=len(nums) >= 5 and not gaps, lines=len(nums),
+                first=nums[0] if nums else None, last=nums[-1] if nums else None,
+                gaps=len(gaps), first_gaps=gaps[:5])
+
+
+def check_real_i2c(txns):
+    """Real I2C0 scan with no device attached: every transaction is one address byte
+    (addr<<1 | W) answered with NACK, and addresses step 0x08..0x77 in order."""
+    addrs, malformed = [], []
+    for i, t in enumerate(txns):
+        if len(t) == 1 and t[0][1] == 1 and t[0][0] & 1 == 0:
+            addrs.append(t[0][0] >> 1)
+        else:
+            malformed.append(i)
+    malformed = [i for i in malformed if i != 0]  # first one may be cut by the capture start
+    nxt = lambda a: 0x08 if a == 0x77 else a + 1
+    order_errors = sum(1 for a, b in zip(addrs, addrs[1:]) if b != nxt(a))
+    return dict(ok=len(addrs) > 10 and not malformed and order_errors == 0,
+                transactions=len(txns), probes=len(addrs), malformed=len(malformed),
+                first_malformed=malformed[:5], order_errors=order_errors,
+                addr_range=(hex(min(addrs)), hex(max(addrs))) if addrs else None)
+
+
 def check_sequence(data):
     """Self-test: after an optional junk prefix, bytes must be 0,1,2,... mod 256."""
     start = data.find(b"\x00")
@@ -166,6 +195,9 @@ def main():
     u.add_argument("--timeout", type=int, default=1000, help="ms to wait for n bytes")
     u.add_argument("--selftest", action="store_true")
     u.add_argument("--out", help="write decoded bytes to this file")
+    u.add_argument("--real", action="store_true",
+                   help="decode the chip's real UART2 TX (log output, 1 Mbaud). Jumper header "
+                        "pin 15 (PB14) -> pin 9 (PC7); uses --pin 23 and --baud 1000000")
     i = sub.add_parser("i2c")
     i.add_argument("--bus", type=int, default=100_000, help="self-test source bus rate (Hz)")
     i.add_argument("--sample", type=int, default=10_000_000, help="decoder poll rate (Hz)")
@@ -173,6 +205,9 @@ def main():
     i.add_argument("--n", type=int, default=1024, help="events to decode before stopping")
     i.add_argument("--timeout", type=int, default=2000)
     i.add_argument("--selftest", action="store_true")
+    i.add_argument("--real", action="store_true",
+                   help="decode the chip's real I2C0 controller scanning 0x08-0x77. Jumper header "
+                        "pin 27 (PB11 SCL) -> pin 14 (PC0), pin 26 (PB12 SDA) -> pin 12 (PC1)")
     s = sub.add_parser("spi", help="mode 0; pins base..base+3 = SCK, MOSI, MISO, CS")
     s.add_argument("--sck", type=int, default=1_000_000, help="self-test source SCK rate (Hz)")
     s.add_argument("--sample", type=int, default=10_000_000, help="decoder poll rate (Hz)")
@@ -188,12 +223,17 @@ def main():
         link.drain()
         ser.write(b"ping\n")
         link.message(timeout=3)
+        real = getattr(a, "real", False)
+        if real and a.selftest:
+            sys.exit("--real and --selftest are exclusive (self-tests drive the pins)")
         if a.proto == "i2c":
-            info, events = i2c(link, a.sample, a.bus, a.scl, a.n, a.timeout, a.selftest)
+            info, events = i2c(link, a.sample, a.bus, a.scl, a.n, a.timeout, 2 if real else a.selftest)
         elif a.proto == "spi":
             info, events = spi(link, a.sample, a.sck, a.base, a.n, a.timeout, a.selftest)
         else:
-            info, data = uart(link, a.baud, a.pin, a.n, a.timeout, a.selftest)
+            if real:
+                a.pin, a.baud = 23, 1_000_000
+            info, data = uart(link, a.baud, a.pin, a.n, a.timeout, 2 if real else a.selftest)
 
     if a.proto == "spi":
         frames = spi_frames(events)
@@ -211,6 +251,11 @@ def main():
         print("i2c:", info)
         for t in txns[:4]:
             print("  ", fmt_txn(t))
+        if real:
+            v = check_real_i2c(txns)
+            print("real-device check:", v)
+            print("REAL-DEVICE", "PASS" if v["ok"] else "FAIL")
+            sys.exit(0 if v["ok"] else 1)
         if a.selftest:
             v = check_i2c(txns)
             print("self-test:", v)
@@ -223,6 +268,14 @@ def main():
     if a.out:
         open(a.out, "wb").write(data)
         print("wrote", a.out)
+    if real:
+        text = data.decode("ascii", errors="replace")
+        print("decoded text sample:", repr(text[:160]))
+        v = check_real_uart(data)
+        ok = v["ok"] and info["framing_errors"] == 0
+        print("real-device check:", v)
+        print("REAL-DEVICE", "PASS" if ok else "FAIL")
+        sys.exit(0 if ok else 1)
     if a.selftest:
         v = check_sequence(data)
         ok = v["ok"] and info["framing_errors"] == 0 and info["count"] >= a.n
