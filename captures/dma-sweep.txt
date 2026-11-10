@@ -1,0 +1,28 @@
+== DMA rate 1000000
+capture: {'version': 3, 'rate': 1000000, 'n': 65536, 'elapsed_ms': 78, 'expected_ms': 65.54, 'bio_cycles': 45875254, 'cycles_per_sample': 700.0}
+self-test: {'expected_run': 8, 'run_hist': {8: 8190}, 'bad_runs': 0, 'step_errors': 0, 'transitions': 8191}
+SELF-TEST PASS
+== DMA rate 2000000
+capture: {'version': 3, 'rate': 2000000, 'n': 65536, 'elapsed_ms': 41, 'expected_ms': 32.77, 'bio_cycles': 22937654, 'cycles_per_sample': 350.0}
+self-test: {'expected_run': 8, 'run_hist': {8: 8190}, 'bad_runs': 0, 'step_errors': 0, 'transitions': 8191}
+SELF-TEST PASS
+== DMA rate 5000000
+capture: {'version': 3, 'rate': 5000000, 'n': 65536, 'elapsed_ms': 21, 'expected_ms': 13.11, 'bio_cycles': 9175098, 'cycles_per_sample': 140.0}
+self-test: {'expected_run': 8, 'run_hist': {8: 8190}, 'bad_runs': 0, 'step_errors': 0, 'transitions': 8191}
+SELF-TEST PASS
+== DMA rate 10000000
+capture: {'version': 3, 'rate': 10000000, 'n': 65536, 'elapsed_ms': 14, 'expected_ms': 6.55, 'bio_cycles': 4592754, 'cycles_per_sample': 70.1}
+self-test: {'expected_run': 8, 'run_hist': {7: 74, 8: 8126}, 'bad_runs': 74, 'step_errors': 0, 'transitions': 8201}
+SELF-TEST FAIL
+== DMA rate 17500000
+capture: {'version': 3, 'rate': 17500000, 'n': 65536, 'elapsed_ms': 15, 'expected_ms': 3.74, 'bio_cycles': 5243454, 'cycles_per_sample': 80.0}
+self-test: {'expected_run': 8, 'run_hist': {3: 7, 4: 16377}, 'bad_runs': 16384, 'step_errors': 0, 'transitions': 16385}
+SELF-TEST FAIL
+== DMA rate 25000000
+capture: {'version': 3, 'rate': 25000000, 'n': 65536, 'elapsed_ms': 15, 'expected_ms': 2.62, 'bio_cycles': 5505050, 'cycles_per_sample': 84.0}
+self-test: {'expected_run': 8, 'run_hist': {2: 8192, 3: 16382}, 'bad_runs': 24574, 'step_errors': 0, 'transitions': 24575}
+SELF-TEST FAIL
+== DMA rate 35000000
+capture: {'version': 3, 'rate': 35000000, 'n': 65536, 'elapsed_ms': 14, 'expected_ms': 1.87, 'bio_cycles': 4444134, 'cycles_per_sample': 67.8}
+self-test: {'expected_run': 8, 'run_hist': {1: 4118, 2: 21862, 3: 5897}, 'bad_runs': 31877, 'step_errors': 8206, 'transitions': 31878}
+SELF-TEST FAIL

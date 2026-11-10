@@ -1,0 +1,18 @@
+# Upstream OS clone: tracked in its own repo (branch `baoscope`), see README.md
+/xous-core/
+
+# Local Python environment and caches
+/.venv/
+__pycache__/
+*.pyc
+
+# Build logs (regenerate with cargo xtask)
+/build-*.log
+
+# Waveforms are large and reproducible; keep only a few representative ones
+/captures/*.vcd
+!/captures/selftest-1MSps.vcd
+!/captures/split-m2-17500000.vcd
+!/captures/split-m8-25000000.vcd
+
+.DS_Store

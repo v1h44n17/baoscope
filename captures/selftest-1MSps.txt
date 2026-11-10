@@ -1,0 +1,7 @@
+ping -> b'PONG'
+link: {'records': 132, 'dup': 38, 'lost': 0, 'resync_bytes': 5131}
+capture: {'version': 2, 'rate': 1000000, 'n': 65536, 'elapsed_ms': 70, 'full_hits': 19, 'expected_ms': 65.54}
+channel activity: [8197, 4099, 2050, 1025, 0, 0, 0, 0] (transitions per channel)
+self-test: {'expected_run': 8, 'run_hist': {1: 4, 2: 3, 4: 1, 8: 8189}, 'bad_runs': 8, 'step_errors': 1, 'transitions': 8198}
+SELF-TEST FAIL
+wrote captures/selftest-1MSps.vcd

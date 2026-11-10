@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "<project>/tools/capture.py", line 226, in <module>
+    main()
+    ~~~~^^
+  File "<project>/tools/capture.py", line 197, in main
+    print("ping ->", link.message(timeout=3)[0])
+                     ~~~~~~~~~~~~^^^^^^^^^^^
+  File "<project>/tools/capture.py", line 92, in message
+    _, p = self.record(deadline)
+           ~~~~~~~~~~~^^^^^^^^^^
+  File "<project>/tools/capture.py", line 65, in record
+    self._fill(deadline)
+    ~~~~~~~~~~^^^^^^^^^^
+  File "<project>/tools/capture.py", line 57, in _fill
+    raise TimeoutError(f"no data; stats {self.stats}")
+TimeoutError: no data; stats {'records': 0, 'dup': 0, 'lost': 0, 'resync_bytes': 0}

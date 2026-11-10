@@ -1,0 +1,104 @@
+== --dma --mode 1 --rate 1000000 --n 4096
+capture: {'version': 5, 'rate': 1000000, 'n': 4096, 'elapsed_ms': 13, 'expected_ms': 4.1, 'bio_cycles': 2867254, 'cycles_per_sample': 700.0}
+self-test: {'expected_run': 8, 'bad_runs': 0, 'step_errors': 0, 'transitions': 511, 'expected_transitions': 511, 'ok': True}
+SELF-TEST PASS
+== --dma --mode 1 --rate 5000000 --split
+capture: {'version': 5, 'rate': 5000000, 'n': 65536, 'elapsed_ms': 51, 'expected_ms': 13.11, 'bio_cycles': 9175099, 'cycles_per_sample': 140.0}
+self-test: {'expected_run': 8, 'bad_runs': 0, 'step_errors': 0, 'transitions': 8191, 'expected_transitions': 8191, 'ok': True}
+SELF-TEST PASS
+== --dma --split --mode 1 --rate 5000000 --vcd captures/split-m1-5000000.vcd
+capture: {'version': 5, 'rate': 5000000, 'n': 65536, 'elapsed_ms': 51, 'expected_ms': 13.11, 'bio_cycles': 9175099, 'cycles_per_sample': 140.0}
+self-test: {'expected_run': 8, 'bad_runs': 0, 'step_errors': 0, 'transitions': 8191, 'expected_transitions': 8191, 'ok': True}
+SELF-TEST PASS
+== --dma --split --mode 1 --rate 10000000 --vcd captures/split-m1-10000000.vcd
+capture: {'version': 5, 'rate': 10000000, 'n': 65536, 'elapsed_ms': 44, 'expected_ms': 6.55, 'bio_cycles': 4587579, 'cycles_per_sample': 70.0}
+self-test: {'expected_run': 8, 'bad_runs': 0, 'step_errors': 0, 'transitions': 8191, 'expected_transitions': 8191, 'ok': True}
+SELF-TEST PASS
+== --dma --split --mode 1 --rate 14000000 --vcd captures/split-m1-14000000.vcd
+capture: {'version': 5, 'rate': 14000000, 'n': 65536, 'elapsed_ms': 43, 'expected_ms': 4.68, 'bio_cycles': 3704675, 'cycles_per_sample': 56.5}
+self-test: {'expected_run': 8, 'bad_runs': 8464, 'step_errors': 0, 'transitions': 9260, 'expected_transitions': 8191, 'ok': False}
+SELF-TEST FAIL
+== --dma --split --mode 1 --rate 17500000 --vcd captures/split-m1-17500000.vcd
+capture: {'version': 5, 'rate': 17500000, 'n': 65536, 'elapsed_ms': 42, 'expected_ms': 3.74, 'bio_cycles': 3707859, 'cycles_per_sample': 56.6}
+self-test: {'expected_run': 8, 'bad_runs': 11581, 'step_errors': 0, 'transitions': 11585, 'expected_transitions': 8191, 'ok': False}
+SELF-TEST FAIL
+== --dma --split --mode 1 --rate 25000000 --vcd captures/split-m1-25000000.vcd
+capture: {'version': 5, 'rate': 25000000, 'n': 65536, 'elapsed_ms': 42, 'expected_ms': 2.62, 'bio_cycles': 3707063, 'cycles_per_sample': 56.6}
+self-test: {'expected_run': 8, 'bad_runs': 16545, 'step_errors': 1, 'transitions': 16547, 'expected_transitions': 8191, 'ok': False}
+SELF-TEST FAIL
+== --dma --split --mode 1 --rate 35000000 --vcd captures/split-m1-35000000.vcd
+capture: {'version': 5, 'rate': 35000000, 'n': 65536, 'elapsed_ms': 42, 'expected_ms': 1.87, 'bio_cycles': 3707639, 'cycles_per_sample': 56.6}
+self-test: {'expected_run': 8, 'bad_runs': 23167, 'step_errors': 1, 'transitions': 23169, 'expected_transitions': 8191, 'ok': False}
+SELF-TEST FAIL
+== --dma --split --mode 1 --rate 50000000 --vcd captures/split-m1-50000000.vcd
+capture: {'version': 5, 'rate': 50000000, 'n': 65536, 'elapsed_ms': 42, 'expected_ms': 1.31, 'bio_cycles': 3705459, 'cycles_per_sample': 56.5}
+self-test: {'expected_run': 8, 'bad_runs': 33078, 'step_errors': 1, 'transitions': 33079, 'expected_transitions': 8191, 'ok': False}
+SELF-TEST FAIL
+== --dma --split --mode 1 --rate 70000000 --vcd captures/split-m1-70000000.vcd
+capture: {'version': 5, 'rate': 70000000, 'n': 65536, 'elapsed_ms': 43, 'expected_ms': 0.94, 'bio_cycles': 3705295, 'cycles_per_sample': 56.5}
+self-test: {'expected_run': 8, 'bad_runs': 46308, 'step_errors': 1, 'transitions': 46309, 'expected_transitions': 8191, 'ok': False}
+SELF-TEST FAIL
+== --dma --split --mode 2 --rate 5000000 --vcd captures/split-m2-5000000.vcd
+capture: {'version': 5, 'rate': 5000000, 'n': 131072, 'elapsed_ms': 89, 'expected_ms': 26.21, 'bio_cycles': 18350151, 'cycles_per_sample': 140.0}
+self-test: {'expected_run': 8, 'bad_runs': 0, 'step_errors': 0, 'transitions': 16383, 'expected_transitions': 16383, 'ok': True}
+SELF-TEST PASS
+== --dma --split --mode 2 --rate 10000000 --vcd captures/split-m2-10000000.vcd
+capture: {'version': 5, 'rate': 10000000, 'n': 131072, 'elapsed_ms': 76, 'expected_ms': 13.11, 'bio_cycles': 9175107, 'cycles_per_sample': 70.0}
+self-test: {'expected_run': 8, 'bad_runs': 0, 'step_errors': 0, 'transitions': 16383, 'expected_transitions': 16383, 'ok': True}
+SELF-TEST PASS
+== --dma --split --mode 2 --rate 14000000 --vcd captures/split-m2-14000000.vcd
+capture: {'version': 5, 'rate': 14000000, 'n': 131072, 'elapsed_ms': 72, 'expected_ms': 9.36, 'bio_cycles': 6553667, 'cycles_per_sample': 50.0}
+self-test: {'expected_run': 8, 'bad_runs': 0, 'step_errors': 0, 'transitions': 16383, 'expected_transitions': 16383, 'ok': True}
+SELF-TEST PASS
+== --dma --split --mode 2 --rate 17500000 --vcd captures/split-m2-17500000.vcd
+capture: {'version': 5, 'rate': 17500000, 'n': 131072, 'elapsed_ms': 70, 'expected_ms': 7.49, 'bio_cycles': 5242947, 'cycles_per_sample': 40.0}
+self-test: {'expected_run': 8, 'bad_runs': 0, 'step_errors': 0, 'transitions': 16383, 'expected_transitions': 16383, 'ok': True}
+SELF-TEST PASS
+== --dma --split --mode 2 --rate 25000000 --vcd captures/split-m2-25000000.vcd
+capture: {'version': 5, 'rate': 25000000, 'n': 131072, 'elapsed_ms': 69, 'expected_ms': 5.24, 'bio_cycles': 3707371, 'cycles_per_sample': 28.3}
+self-test: {'expected_run': 8, 'bad_runs': 1311, 'step_errors': 1, 'transitions': 16549, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== --dma --split --mode 2 --rate 35000000 --vcd captures/split-m2-35000000.vcd
+capture: {'version': 5, 'rate': 35000000, 'n': 131072, 'elapsed_ms': 69, 'expected_ms': 3.74, 'bio_cycles': 3705023, 'cycles_per_sample': 28.3}
+self-test: {'expected_run': 8, 'bad_runs': 27309, 'step_errors': 8329, 'transitions': 27317, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== --dma --split --mode 2 --rate 50000000 --vcd captures/split-m2-50000000.vcd
+capture: {'version': 5, 'rate': 50000000, 'n': 131072, 'elapsed_ms': 69, 'expected_ms': 2.62, 'bio_cycles': 3708135, 'cycles_per_sample': 28.3}
+self-test: {'expected_run': 8, 'bad_runs': 33101, 'step_errors': 0, 'transitions': 33102, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== --dma --split --mode 2 --rate 70000000 --vcd captures/split-m2-70000000.vcd
+capture: {'version': 5, 'rate': 70000000, 'n': 131072, 'elapsed_ms': 69, 'expected_ms': 1.87, 'bio_cycles': 3707027, 'cycles_per_sample': 28.3}
+self-test: {'expected_run': 8, 'bad_runs': 49397, 'step_errors': 6138, 'transitions': 49398, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== --dma --split --mode 8 --rate 5000000 --vcd captures/split-m8-5000000.vcd
+capture: {'version': 5, 'rate': 5000000, 'n': 131072, 'elapsed_ms': 37, 'expected_ms': 26.21, 'bio_cycles': 18350151, 'cycles_per_sample': 140.0}
+self-test: {'expected_run': 8, 'bad_runs': 0, 'step_errors': 0, 'transitions': 16383, 'expected_transitions': 16383, 'ok': True}
+SELF-TEST PASS
+== --dma --split --mode 8 --rate 10000000 --vcd captures/split-m8-10000000.vcd
+capture: {'version': 5, 'rate': 10000000, 'n': 131072, 'elapsed_ms': 24, 'expected_ms': 13.11, 'bio_cycles': 9175111, 'cycles_per_sample': 70.0}
+self-test: {'expected_run': 8, 'bad_runs': 0, 'step_errors': 0, 'transitions': 16383, 'expected_transitions': 16383, 'ok': True}
+SELF-TEST PASS
+== --dma --split --mode 8 --rate 14000000 --vcd captures/split-m8-14000000.vcd
+capture: {'version': 5, 'rate': 14000000, 'n': 131072, 'elapsed_ms': 20, 'expected_ms': 9.36, 'bio_cycles': 6553671, 'cycles_per_sample': 50.0}
+self-test: {'expected_run': 8, 'bad_runs': 0, 'step_errors': 0, 'transitions': 16383, 'expected_transitions': 16383, 'ok': True}
+SELF-TEST PASS
+== --dma --split --mode 8 --rate 17500000 --vcd captures/split-m8-17500000.vcd
+capture: {'version': 5, 'rate': 17500000, 'n': 131072, 'elapsed_ms': 19, 'expected_ms': 7.49, 'bio_cycles': 5242951, 'cycles_per_sample': 40.0}
+self-test: {'expected_run': 8, 'bad_runs': 0, 'step_errors': 0, 'transitions': 16383, 'expected_transitions': 16383, 'ok': True}
+SELF-TEST PASS
+== --dma --split --mode 8 --rate 25000000 --vcd captures/split-m8-25000000.vcd
+capture: {'version': 5, 'rate': 25000000, 'n': 131072, 'elapsed_ms': 16, 'expected_ms': 5.24, 'bio_cycles': 3670087, 'cycles_per_sample': 28.0}
+self-test: {'expected_run': 8, 'bad_runs': 1, 'step_errors': 1, 'transitions': 16384, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== --dma --split --mode 8 --rate 35000000 --vcd captures/split-m8-35000000.vcd
+capture: {'version': 5, 'rate': 35000000, 'n': 131072, 'elapsed_ms': 15, 'expected_ms': 3.74, 'bio_cycles': 2949171, 'cycles_per_sample': 22.5}
+self-test: {'expected_run': 8, 'bad_runs': 16384, 'step_errors': 1, 'transitions': 18432, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== --dma --split --mode 8 --rate 50000000 --vcd captures/split-m8-50000000.vcd
+capture: {'version': 5, 'rate': 50000000, 'n': 131072, 'elapsed_ms': 16, 'expected_ms': 2.62, 'bio_cycles': 3670079, 'cycles_per_sample': 28.0}
+self-test: {'expected_run': 8, 'bad_runs': 32767, 'step_errors': 1, 'transitions': 32768, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== --dma --split --mode 8 --rate 70000000 --vcd captures/split-m8-70000000.vcd
+capture: {'version': 5, 'rate': 70000000, 'n': 131072, 'elapsed_ms': 15, 'expected_ms': 1.87, 'bio_cycles': 2785343, 'cycles_per_sample': 21.3}
+self-test: {'expected_run': 8, 'bad_runs': 34815, 'step_errors': 1, 'transitions': 34816, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL

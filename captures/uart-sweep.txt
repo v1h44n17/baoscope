@@ -1,0 +1,37 @@
+== uart 115200
+uart: {'version': 6, 'baud': 115131, 'count': 4096, 'elapsed_ms': 398, 'finished': True, 'framing_errors': 0, 'first_ferr': []}
+first bytes: 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f
+self-test: {'ok': True, 'junk_prefix': 0, 'checked': 4096, 'sequence_errors': 0, 'first_errors': []}
+SELF-TEST PASS
+== uart 460800
+uart: {'version': 6, 'baud': 460526, 'count': 4096, 'elapsed_ms': 101, 'finished': True, 'framing_errors': 0, 'first_ferr': []}
+first bytes: 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f
+self-test: {'ok': True, 'junk_prefix': 0, 'checked': 4096, 'sequence_errors': 0, 'first_errors': []}
+SELF-TEST PASS
+== uart 1000000
+uart: {'version': 6, 'baud': 994318, 'count': 4096, 'elapsed_ms': 48, 'finished': True, 'framing_errors': 0, 'first_ferr': []}
+first bytes: 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f
+self-test: {'ok': True, 'junk_prefix': 0, 'checked': 4096, 'sequence_errors': 0, 'first_errors': []}
+SELF-TEST PASS
+== uart 2000000
+uart: {'version': 6, 'baud': 1988636, 'count': 4096, 'elapsed_ms': 25, 'finished': True, 'framing_errors': 0, 'first_ferr': []}
+first bytes: 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f
+self-test: {'ok': True, 'junk_prefix': 0, 'checked': 4096, 'sequence_errors': 0, 'first_errors': []}
+SELF-TEST PASS
+== uart 3000000
+uart: {'version': 6, 'baud': 3017241, 'count': 4096, 'elapsed_ms': 19, 'finished': True, 'framing_errors': 0, 'first_ferr': []}
+first bytes: 80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f 90 91 92 93 94 95 96 97 98 99 9a 9b 9c 9d 9e 9f
+self-test: {'ok': False, 'reason': 'no 0x00 found'}
+SELF-TEST FAIL
+== uart 4000000
+uart: {'version': 6, 'baud': 3977272, 'count': 4096, 'elapsed_ms': 14, 'finished': True, 'framing_errors': 0, 'first_ferr': []}
+first bytes: 80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f 80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f
+self-test: {'ok': False, 'reason': 'no 0x00 found'}
+SELF-TEST FAIL
+== uart 6000000
+uart: {'version': 6, 'baud': 5833333, 'count': 4096, 'elapsed_ms': 13, 'finished': True, 'framing_errors': 2180, 'first_ferr': [1, 2, 3, 4, 6]}
+first bytes: c0 30 c1 a8 c2 18 1c c4 11 cc c6 0c c9 d0 a6 c9 f9 c6 cd d1 e6 cf f6 d0 24 d2 92 d3 e8 a2 d5 d1
+self-test: {'ok': False, 'reason': 'no 0x00 found'}
+SELF-TEST FAIL
+== regression: split capture
+SELF-TEST PASS

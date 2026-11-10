@@ -1,0 +1,2 @@
+ping -> b'PONG'
+stream: {'unique_payload_MBps': 4.322, 'wire_MBps_est': 5.942, 'seconds': 2.45, 'records': 21001, 'dup': 7422, 'lost': 0, 'resync_bytes': 870919}

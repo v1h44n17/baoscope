@@ -1,0 +1,64 @@
+== mode 2 rate 5000000
+capture: {'version': 4, 'rate': 5000000, 'n': 131072, 'elapsed_ms': 95, 'expected_ms': 26.21, 'bio_cycles': 18350142, 'cycles_per_sample': 140.0}
+self-test: {'expected_run': 8, 'run_hist': {8: 16382}, 'bad_runs': 0, 'step_errors': 0, 'transitions': 16383, 'expected_transitions': 16383, 'ok': True}
+SELF-TEST PASS
+== mode 2 rate 10000000
+capture: {'version': 4, 'rate': 10000000, 'n': 131072, 'elapsed_ms': 77, 'expected_ms': 13.11, 'bio_cycles': 9186862, 'cycles_per_sample': 70.1}
+self-test: {'expected_run': 8, 'run_hist': {6: 13, 7: 142, 8: 16248}, 'bad_runs': 155, 'step_errors': 0, 'transitions': 16404, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== mode 2 rate 14000000
+capture: {'version': 4, 'rate': 14000000, 'n': 131072, 'elapsed_ms': 78, 'expected_ms': 9.36, 'bio_cycles': 9830414, 'cycles_per_sample': 75.0}
+self-test: {'expected_run': 8, 'run_hist': {5: 16383, 6: 8191}, 'bad_runs': 24574, 'step_errors': 0, 'transitions': 24575, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== mode 2 rate 17500000
+capture: {'version': 4, 'rate': 17500000, 'n': 131072, 'elapsed_ms': 75, 'expected_ms': 7.49, 'bio_cycles': 7867462, 'cycles_per_sample': 60.0}
+self-test: {'expected_run': 8, 'run_hist': {4: 28, 5: 16385, 6: 8171}, 'bad_runs': 24584, 'step_errors': 0, 'transitions': 24585, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== mode 2 rate 25000000
+capture: {'version': 4, 'rate': 25000000, 'n': 131072, 'elapsed_ms': 74, 'expected_ms': 5.24, 'bio_cycles': 7341830, 'cycles_per_sample': 56.0}
+self-test: {'expected_run': 8, 'run_hist': {3: 32, 4: 32742}, 'bad_runs': 32774, 'step_errors': 0, 'transitions': 32775, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== mode 2 rate 35000000
+capture: {'version': 4, 'rate': 35000000, 'n': 131072, 'elapsed_ms': 73, 'expected_ms': 3.74, 'bio_cycles': 6555122, 'cycles_per_sample': 50.0}
+self-test: {'expected_run': 8, 'run_hist': {1: 4097, 2: 16388, 3: 4125, 4: 20454}, 'bad_runs': 45064, 'step_errors': 8194, 'transitions': 45065, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== mode 2 rate 50000000
+capture: {'version': 4, 'rate': 50000000, 'n': 131072, 'elapsed_ms': 71, 'expected_ms': 2.62, 'bio_cycles': 5507802, 'cycles_per_sample': 42.0}
+self-test: {'expected_run': 8, 'run_hist': {2: 16490, 3: 32651, 4: 34}, 'bad_runs': 49175, 'step_errors': 0, 'transitions': 49176, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== mode 2 rate 70000000
+capture: {'version': 4, 'rate': 70000000, 'n': 131072, 'elapsed_ms': 71, 'expected_ms': 1.87, 'bio_cycles': 5245362, 'cycles_per_sample': 40.0}
+self-test: {'expected_run': 8, 'run_hist': {1: 19523, 2: 55737, 3: 24}, 'bad_runs': 75284, 'step_errors': 19525, 'transitions': 75285, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== mode 8 rate 5000000
+capture: {'version': 4, 'rate': 5000000, 'n': 131072, 'elapsed_ms': 37, 'expected_ms': 26.21, 'bio_cycles': 18350155, 'cycles_per_sample': 140.0}
+self-test: {'expected_run': 8, 'run_hist': {8: 16382}, 'bad_runs': 0, 'step_errors': 0, 'transitions': 16383, 'expected_transitions': 16383, 'ok': True}
+SELF-TEST PASS
+== mode 8 rate 10000000
+capture: {'version': 4, 'rate': 10000000, 'n': 131072, 'elapsed_ms': 25, 'expected_ms': 13.11, 'bio_cycles': 10321923, 'cycles_per_sample': 78.8}
+self-test: {'expected_run': 8, 'run_hist': {7: 16383, 8: 2047}, 'bad_runs': 16383, 'step_errors': 0, 'transitions': 18431, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== mode 8 rate 14000000
+capture: {'version': 4, 'rate': 14000000, 'n': 131072, 'elapsed_ms': 21, 'expected_ms': 9.36, 'bio_cycles': 7373575, 'cycles_per_sample': 56.3}
+self-test: {'expected_run': 8, 'run_hist': {6: 13, 7: 16372, 8: 2047}, 'bad_runs': 16385, 'step_errors': 0, 'transitions': 18433, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== mode 8 rate 17500000
+capture: {'version': 4, 'rate': 17500000, 'n': 131072, 'elapsed_ms': 19, 'expected_ms': 7.49, 'bio_cycles': 5974555, 'cycles_per_sample': 45.6}
+self-test: {'expected_run': 8, 'run_hist': {6: 1651, 7: 14987, 8: 2031}, 'bad_runs': 16638, 'step_errors': 0, 'transitions': 18670, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== mode 8 rate 25000000
+capture: {'version': 4, 'rate': 25000000, 'n': 131072, 'elapsed_ms': 17, 'expected_ms': 5.24, 'bio_cycles': 4588295, 'cycles_per_sample': 35.0}
+self-test: {'expected_run': 8, 'run_hist': {5: 20, 6: 14214, 7: 4304, 8: 1944}, 'bad_runs': 18538, 'step_errors': 0, 'transitions': 20483, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== mode 8 rate 35000000
+capture: {'version': 4, 'rate': 35000000, 'n': 131072, 'elapsed_ms': 19, 'expected_ms': 3.74, 'bio_cycles': 5971115, 'cycles_per_sample': 45.6}
+self-test: {'expected_run': 8, 'run_hist': {1: 3755, 2: 5075, 3: 11796, 4: 20443}, 'bad_runs': 41069, 'step_errors': 7504, 'transitions': 41070, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== mode 8 rate 50000000
+capture: {'version': 4, 'rate': 50000000, 'n': 131072, 'elapsed_ms': 17, 'expected_ms': 2.62, 'bio_cycles': 4588111, 'cycles_per_sample': 35.0}
+self-test: {'expected_run': 8, 'run_hist': {1: 9, 2: 12470, 3: 7818, 4: 20666}, 'bad_runs': 40963, 'step_errors': 0, 'transitions': 40964, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL
+== mode 8 rate 70000000
+capture: {'version': 4, 'rate': 70000000, 'n': 131072, 'elapsed_ms': 18, 'expected_ms': 1.87, 'bio_cycles': 4754195, 'cycles_per_sample': 36.3}
+self-test: {'expected_run': 8, 'run_hist': {1: 12299, 2: 26627, 3: 20484, 4: 1016}, 'bad_runs': 60426, 'step_errors': 8238, 'transitions': 60427, 'expected_transitions': 16383, 'ok': False}
+SELF-TEST FAIL

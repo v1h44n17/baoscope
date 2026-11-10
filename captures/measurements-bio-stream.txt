@@ -1,0 +1,27 @@
+    1s  total 10.038 MB/s  pattern 10.038 MB/s
+    2s  total 10.003 MB/s  pattern 10.003 MB/s
+    3s  total  9.983 MB/s  pattern  9.983 MB/s
+    4s  total  9.965 MB/s  pattern  9.965 MB/s
+    5s  total  9.992 MB/s  pattern  9.992 MB/s
+    6s  total 10.003 MB/s  pattern 10.003 MB/s
+    7s  total  9.993 MB/s  pattern  9.993 MB/s
+    8s  total  9.995 MB/s  pattern  9.995 MB/s
+    9s  total  9.986 MB/s  pattern  9.986 MB/s
+   10s  total  9.979 MB/s  pattern  9.979 MB/s
+   11s  total  9.971 MB/s  pattern  9.971 MB/s
+   12s  total 10.002 MB/s  pattern 10.002 MB/s
+   13s  total  9.991 MB/s  pattern  9.991 MB/s
+   14s  total 10.001 MB/s  pattern 10.001 MB/s
+{
+  "port": "/dev/cu.usbmodemNG5LP83",
+  "seconds": 15.0,
+  "total_bytes": 149817336,
+  "pattern_bytes": 149817335,
+  "breaks": 1,
+  "avg_total_MBps": 9.987,
+  "steady_pattern_MBps": 9.989,
+  "steady_pattern_Mbit": 79.9,
+  "device_reports": []
+}
+count-only MB/s per second: [10.48, 9.99, 10.0, 10.01, 9.98, 9.99, 9.99, 9.97, 9.99]
+count-only avg MB/s: 9.988
