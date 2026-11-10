@@ -71,7 +71,12 @@ all intermediate results is in [`PLAN.md`](PLAN.md).
 
 - All firmware (`apps-dabao/baoscope`, on a branch of xous-core) and host tools are source, with
   every measurement and every failed approach logged in `PLAN.md`.
-- Findings for upstream, drafted in [`docs/upstream-issues.md`](docs/upstream-issues.md):
+- Findings filed upstream as betrusted-io/xous-core
+  [#1017](https://github.com/betrusted-io/xous-core/issues/1017),
+  [#1018](https://github.com/betrusted-io/xous-core/issues/1018),
+  [#1019](https://github.com/betrusted-io/xous-core/issues/1019),
+  [#1020](https://github.com/betrusted-io/xous-core/issues/1020)
+  (details in [`docs/upstream-issues.md`](docs/upstream-issues.md)):
   1. **USB CDC repeats whole 512-byte packets** (26–35 % of records duplicated under load) —
      invisible to the existing `bio-stream` test because its pattern repeats every 256 bytes.
   2. `port_and_pin_to_bio_bit` maps port B as `15 - pin` (pinout says PB14 = BIO14).

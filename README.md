@@ -17,7 +17,7 @@ BIO cores. Entry for the Dabao Hackathon (BIO + Tooling directions).
 **Judges: start with [SUBMISSION.md](SUBMISSION.md)**, then run `python tools/demo.py` (7 wire-free
 tests, last run 7/7 PASS — [scorecard](captures/demo-scorecard.md)).
 Full design notes, measurements and lessons learned: [PLAN.md](PLAN.md).
-Upstream bug drafts: [docs/upstream-issues.md](docs/upstream-issues.md).
+Upstream bugs filed: [betrusted-io/xous-core#1017–#1020](docs/upstream-issues.md).
 
 ## Layout
 

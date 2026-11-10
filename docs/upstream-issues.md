@@ -1,7 +1,16 @@
-# Upstream issue drafts (betrusted-io/xous-core)
+# Upstream issues (betrusted-io/xous-core)
 
-Found while building BaoScope. Drafts only — **not filed**. Each is ready to paste into a GitHub issue.
-Base revision: `99bbfcc1` (dev, 2026-11).
+Found while building BaoScope. Filed 2026-11-10 against base revision `99bbfcc1`:
+
+| # | Issue |
+|---|---|
+| 1 | [#1017 usb-bao1x (Dabao): CDC serial transmit repeats whole 512-byte packets](https://github.com/betrusted-io/xous-core/issues/1017) |
+| 2 | [#1018 bio: port_and_pin_to_bio_bit maps port B backwards](https://github.com/betrusted-io/xous-core/issues/1018) |
+| 3 | [#1019 bio_hw::load_code: ragged last-word shift uses bits instead of bytes](https://github.com/betrusted-io/xous-core/issues/1019) |
+| 4 | [#1020 erratum_check.py: warn on ABI names that alias BIO hardware registers](https://github.com/betrusted-io/xous-core/issues/1020) |
+| 5 | Docs note below — not filed (minor) |
+
+The original drafts follow.
 
 ---
 
