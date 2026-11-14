@@ -1,0 +1,31 @@
+{"t": 0.0, "line": "$ python tools/demo.py"}
+{"t": 0.027, "line": "-> Link: USB throughput (dedup'd) (3000 x 7 records) ..."}
+{"t": 4.943, "line": "   PASS  2.472 MB/s unique, 7612 dup, 0 lost"}
+{"t": 4.943, "line": "-> Capture: Split pipeline, mode 1 (8 ch @ 10 MS/s) ..."}
+{"t": 5.735, "line": "   PASS  8191/8191 counter steps"}
+{"t": 5.735, "line": "-> Capture: Split pipeline, mode 2 (8 ch @ 17.5 MS/s) ..."}
+{"t": 6.557, "line": "   PASS  16383/16383 counter steps"}
+{"t": 6.557, "line": "-> Capture: Split pipeline, mode 8 (4 ch @ 17.5 MS/s) ..."}
+{"t": 7.337, "line": "   PASS  16383/16383 counter steps"}
+{"t": 7.338, "line": "-> Decode: UART self-test (2 Mbaud, 4096 bytes) ..."}
+{"t": 8.017, "line": "   PASS  4096 bytes, 0 errors"}
+{"t": 8.017, "line": "-> Decode: I2C self-test (1 MHz bus, 4096 events) ..."}
+{"t": 8.713, "line": "   PASS  819 transactions, 0 bad"}
+{"t": 8.713, "line": "-> Decode: SPI self-test (2 MHz SCK, 4096 events) ..."}
+{"t": 9.411, "line": "   PASS  819 frames, 0 bad"}
+{"t": 9.414, "line": ""}
+{"t": 9.414, "line": "# BaoScope demo scorecard \u2014 7/7 PASS"}
+{"t": 9.415, "line": ""}
+{"t": 9.415, "line": "Run 2026-11-14 16:05 on a Dabao (Baochip-1x) with the baoscope firmware; no external wiring (BIO self-test sources)."}
+{"t": 9.415, "line": ""}
+{"t": 9.415, "line": "| Group | Test | Setting | Result | Detail |"}
+{"t": 9.415, "line": "|---|---|---|---|---|"}
+{"t": 9.415, "line": "| Link | USB throughput (dedup'd) | 3000 x 7 records | **PASS** | 2.472 MB/s unique, 7612 dup, 0 lost |"}
+{"t": 9.415, "line": "| Capture | Split pipeline, mode 1 | 8 ch @ 10 MS/s | **PASS** | 8191/8191 counter steps |"}
+{"t": 9.415, "line": "| Capture | Split pipeline, mode 2 | 8 ch @ 17.5 MS/s | **PASS** | 16383/16383 counter steps |"}
+{"t": 9.415, "line": "| Capture | Split pipeline, mode 8 | 4 ch @ 17.5 MS/s | **PASS** | 16383/16383 counter steps |"}
+{"t": 9.415, "line": "| Decode | UART self-test | 2 Mbaud, 4096 bytes | **PASS** | 4096 bytes, 0 errors |"}
+{"t": 9.415, "line": "| Decode | I2C self-test | 1 MHz bus, 4096 events | **PASS** | 819 transactions, 0 bad |"}
+{"t": 9.415, "line": "| Decode | SPI self-test | 2 MHz SCK, 4096 events | **PASS** | 819 frames, 0 bad |"}
+{"t": 9.415, "line": ""}
+{"t": 9.415, "line": "saved captures/demo-scorecard.md"}

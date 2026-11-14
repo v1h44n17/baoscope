@@ -14,5 +14,6 @@ __pycache__/
 !/captures/selftest-1MSps.vcd
 !/captures/split-m2-17500000.vcd
 !/captures/split-m8-25000000.vcd
+!/captures/live-m2-17500000.vcd
 
 .DS_Store

@@ -10,8 +10,9 @@ verifiable on a bare board with **no wiring**: `python tools/demo.py` → **7/7 
 
 - **Repo:** https://github.com/v1h44n17/baoscope
 - **Firmware:** https://github.com/v1h44n17/xous-core/tree/baoscope (`apps-dabao/baoscope`)
-- **Video (62 s):** https://github.com/v1h44n17/baoscope/blob/main/media/baoscope-demo.mp4 — rendered
-  from the board's real capture data (waveform, decoded bytes, scorecard), not mock-ups.
+- **Video (2:13, narrated):** https://github.com/v1h44n17/baoscope/blob/main/media/baoscope-demo.mp4 —
+  includes a live run of `tools/demo.py` on the Dabao replayed in real time (7/7 PASS in 9.4 s), plus a
+  live 17.5 MS/s capture and live decoder output, all recorded from the board on 2026-11-14.
 
 ## What it does
 
