@@ -11,8 +11,8 @@ BIO cores. Entry for the Dabao Hackathon (BIO + Tooling directions).
 - **Self-testing:** a spare BIO core generates a known signal on the same pins, so every mode is
   checked end to end without wiring.
 
-**Demo video (62 s): [media/baoscope-demo.mp4](media/baoscope-demo.mp4)** — rendered by
-`tools/make_video.py` from the board's own capture logs.
+**Demo video (2:13, narrated): [media/baoscope-demo.mp4](media/baoscope-demo.mp4)** — rendered by
+`tools/make_video.py` from a live board session (`captures/demo-live.jsonl`, `live-*`).
 
 **Judges: start with [SUBMISSION.md](SUBMISSION.md)**, then run `python tools/demo.py` (7 wire-free
 tests, last run 7/7 PASS — [scorecard](captures/demo-scorecard.md)).
